@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.fruit.controller.Update;
 import com.fruit.vo.FruitBuyer;
@@ -61,6 +62,29 @@ private static FruitBuyerDAO dao = new FruitBuyerDAO();
 			{
 				System.out.println("ps close 오류 발생 : " + e);
 			}
+		}
+	}
+	public void BuyerInsert(FruitBuyer buyer)
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("insert into buyer (id,pwd) values(?,?) ");
+			//id pwd money appleCount applePrice
+			psmt.setString(1,buyer.getId());
+			psmt.setString(2,buyer.getPwd());
+			psmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println("insert 오류 발생 : " + e);
+		}
+		
+		finally
+		{
+			close(conn,psmt);
 		}
 	}
 	//유저
@@ -164,6 +188,40 @@ private static FruitBuyerDAO dao = new FruitBuyerDAO();
 			return Buyer;
 		}
 		
+		public ArrayList<FruitBuyer> buyerList()
+		{
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			FruitBuyer Buyer = null;
+			ArrayList<FruitBuyer> list = new ArrayList<FruitBuyer>();
+			try
+			{
+				conn = connect();
+				psmt = conn.prepareStatement("select * from buyer");
+				//id pwd money appleCount applePrice
+				rs = psmt.executeQuery();
+				while(rs.next())
+				{
+					Buyer = new FruitBuyer();
+					Buyer.setId(rs.getString(1));
+					Buyer.setPwd(rs.getString(2));
+					Buyer.setMoney(rs.getInt(3));
+					Buyer.setAppleCount(rs.getInt(4));
+					list.add(Buyer);
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println("look 오류 발생 : " + e);
+			}
+			
+			finally
+			{
+				close(conn,psmt);
+			}
+			return list;
+		}
 		public boolean BuyerBuyFruit(String sellerId,String buyerId, int appleCount)
 		{
 			Connection conn_1 = null; //seller

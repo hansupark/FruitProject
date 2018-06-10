@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.fruit.vo.FruitBuyer;
 import com.fruit.vo.FruitSeller;
 
 public class FruitSellerDAO {
@@ -63,6 +64,30 @@ public class FruitSellerDAO {
 			}
 		}
 	}
+	public void SellerInsert(FruitSeller seller)
+	{
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		try
+		{
+			conn = connect();
+			psmt = conn.prepareStatement("insert into seller (id,pwd) values(?,?) ");
+			//id pwd money appleCount applePrice
+			psmt.setString(1,seller.getId());
+			psmt.setString(2,seller.getPwd());
+			psmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println("insert 오류 발생 : " + e);
+		}
+		
+		finally
+		{
+			close(conn,psmt);
+		}
+	}
+	
 	public String fruitSellerLogin(String id)
 	{
 		String pwd = null;

@@ -13,5 +13,6 @@ loginID : <input type = "text" name = "Buyer_ID"><br>
 pwd : <input type = "password" name = "Buyer_PWD"><br>
 <input type = "submit" value = "Login">
 <a href = "../index.jsp">go back</a>
+<a href = "InsertBuyer.jsp">회원가입</a>
 </body>
 </html>

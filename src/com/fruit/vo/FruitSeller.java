@@ -12,6 +12,26 @@ public class FruitSeller {
 		
 	}
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public void setAppleCount(int appleCount) {
+		this.appleCount = appleCount;
+	}
+
+	public void setApplePrice(int applePrice) {
+		this.applePrice = applePrice;
+	}
+
 	public FruitSeller(String id, String pwd)
 	{
 		this.id = id;

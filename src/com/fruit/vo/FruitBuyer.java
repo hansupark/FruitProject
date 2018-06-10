@@ -7,6 +7,7 @@ public class FruitBuyer {
 	private int money = 0;
 	private int count = 0;
 	
+	public FruitBuyer() {}
 	public FruitBuyer(String id, String pwd) 
 	{
 		this.id = id;
@@ -34,6 +35,24 @@ public class FruitBuyer {
 		return money;
 	}
 	
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setAppleCount(int appleCount) {
+		this.appleCount = appleCount;
+	}
+	public void setMoney(int money) {
+		this.money = money;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getAppleCount()
 	{
 		return appleCount;

@@ -16,6 +16,10 @@ public class FruitSellerService {
 		return service;	
 	}
 	
+	public void InsertSeller(FruitSeller seller)
+	{
+		dao.SellerInsert(seller);
+	}
 	public String FruitSellerLoginService(String id)
 	{
 		return dao.fruitSellerLogin(id);
